@@ -73,15 +73,17 @@ class Fraction:
             raise ValueError
 
     def __str__(self):
-        for i in (1,3):
-            if self.num % i == 0 and self.den % i == 0:
+        for i in range(1, 10):
+            while self.num % i != 0 and self.den % i != 0:
                 self.num = self.num / i
                 self.den = self.den / i
+            i += 1
         return f"{self.num}/{self.den}"
 
 
-#f1 = Fraction(-1, -6)
-#f2 = Fraction(1, 6)
+
+f1 = Fraction(-1, 3)
+f2 = Fraction(1, 6)
 #print(f1.printing())
 #print((Fraction(1, 3) + Fraction(1, 2)))
 #print((Fraction(1, 3) / Fraction(1, 2)))
