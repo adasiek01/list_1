@@ -12,7 +12,7 @@ class Fraction():
 ################# 7 #################
 
         ### Addition to ex. 1 ###
-        def reduce(n,d):
+        def reduce_init(n,d):
             if n % d == 0:
                 n = int(n/d)
                 d = 1
@@ -36,7 +36,7 @@ class Fraction():
             k_numerator = integral * 10**quantity_after_decimal + decimal_part
             k_denominator = 10**quantity_after_decimal
             #return [k_numerator,k_denominator]
-            reduced = reduce(k_numerator,k_denominator)
+            reduced = reduce_init(k_numerator,k_denominator)
             return reduced
 
         if type(numerator) == int and type(denominator) == int:
@@ -44,11 +44,8 @@ class Fraction():
             self.denominator = denominator
         elif type(numerator) == float and type(denominator) == int:
             fraction = transform(numerator)
-            print("fraction",fraction)
             self.numerator = fraction[0]
             self.denominator = fraction[1]*denominator
-            print("den",self.denominator)
-            print("num",self.numerator)
         elif type(numerator) == int and type(denominator) == float:
             fraction = transform(denominator)
             self.numerator = numerator * fraction[1]
@@ -71,8 +68,12 @@ class Fraction():
                 helpful=b
                 b=a%b
                 a=helpful
-            self.numerator = int(self.numerator/abs(helpful))
-            self.denominator = int(self.denominator/abs(helpful))
+            if self.numerator*self.denominator>0:
+                self.numerator = int(abs(self.numerator/helpful))
+                self.denominator = int(abs(self.denominator/helpful))
+            else:
+                self.numerator = int(-abs(self.numerator/helpful))
+                self.denominator = int(abs(self.denominator/helpful))
 
 
 ################# 4 #################
@@ -198,31 +199,42 @@ class Fraction():
             else:
                 return f"{-abs(self.numerator)}/{abs(self.denominator)}"
     
-    def plus_integer(self,n):
+    def plus_integer(self,n:int):
         extended = n*abs(self.denominator)
         if self.numerator * self.denominator > 0:   
             return f"{abs(self.numerator)+extended}/{abs(self.denominator)}"
         else:
             return f"{-abs(self.numerator)+extended}/{abs(self.denominator)}"
 
-    def plus_float(self,k):
+    def plus_float(self,k:float):
         integral = int(math.modf(k)[1])
+        print("float",float(math.modf(k)[0]))
         help = str(k)
         decimal_index = help.index(".")
         quantity_after_decimal = len(help)-(decimal_index+1)
-        decimal_part = int(help[decimal_index+1:])
+        
+        if int(math.modf(k)[0]) < 0 or int(math.modf(k)[1]) <0:
+            decimal_part = -int(help[decimal_index+1:])
+        else:
+            decimal_part = int(help[decimal_index+1:])
+
+        print("Decimal part",decimal_part)
         k_numerator = integral * 10**quantity_after_decimal + decimal_part
         k_denominator = 10**quantity_after_decimal
+            
         help_fraction = Fraction(k_numerator,k_denominator)
         help_fraction.reduce()
-
+        print("help fraction",help_fraction)
         total_numerator = help_fraction.numerator * self.denominator + self.numerator * help_fraction.denominator
         total_denominator = help_fraction.denominator * self.denominator
         final_fraction = Fraction(total_numerator, total_denominator)
         return final_fraction
 
 
-f1 = Fraction(-5,-2)
+f1 = Fraction(-1,2)
 print(f1)
+print(f1.plus_float(2.4))
+f5 = f1.plus_integer(-5)
+print(f5)
 
 
