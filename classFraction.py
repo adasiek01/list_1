@@ -90,23 +90,23 @@ class Fraction():
     def __add__(self,other): 
         new_numerator = self.numerator * other.denominator + self.denominator * other.numerator
         new_denominator = self.denominator * other.denominator 
-        return f"{new_numerator}/{new_denominator}"
+        return Fraction(new_numerator,new_denominator)
 
     def __sub__(self,other): 
         new_numerator = self.numerator * other.denominator - self.denominator * other.numerator
         new_denominator = self.denominator * other.denominator 
-        return f"{new_numerator}/{new_denominator}"
+        return Fraction(new_numerator,new_denominator)
 
 
     def __mul__(self,other): 
         new_numerator = self.numerator * other.numerator
         new_denominator = self.denominator * other.denominator 
-        return f"{new_numerator}/{new_denominator}"
+        return Fraction(new_numerator,new_denominator)
 
     def __truediv__(self,other): 
         new_numerator = self.numerator * other.denominator
         new_denominator = self.denominator * other.numerator 
-        return f"{new_numerator}/{new_denominator}"
+        return Fraction(new_numerator,new_denominator)
 
         
 
@@ -202,9 +202,15 @@ class Fraction():
     def plus_integer(self,n:int):
         extended = n*abs(self.denominator)
         if self.numerator * self.denominator > 0:   
-            return f"{abs(self.numerator)+extended}/{abs(self.denominator)}"
+            new_numerator = (abs(self.numerator)+extended)
+            new_denominator = abs(self.denominator) 
+            #return f"{abs(self.numerator)+extended}/{abs(self.denominator)}"
         else:
-            return f"{-abs(self.numerator)+extended}/{abs(self.denominator)}"
+            #return f"{-abs(self.numerator)+extended}/{abs(self.denominator)}"
+            new_numerator = (abs(self.numerator)+extended)
+            new_denominator = abs(self.denominator) 
+        new_fraction = Fraction(new_numerator,new_denominator)
+        return new_fraction
 
     def plus_float(self,k:float):
         integral = int(math.modf(k)[1])
@@ -230,11 +236,8 @@ class Fraction():
         final_fraction = Fraction(total_numerator, total_denominator)
         return final_fraction
 
-
-f1 = Fraction(-1,2)
-print(f1)
-print(f1.plus_float(2.4))
-f5 = f1.plus_integer(-5)
-print(f5)
-
+f1 = Fraction(1,-3)
+f2 = Fraction(6,4)
+f3 = f1+f2
+print(f3.mixed())
 
