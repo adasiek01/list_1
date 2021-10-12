@@ -37,7 +37,6 @@ class Fraction():
             k_denominator = 10**quantity_after_decimal
             #return [k_numerator,k_denominator]
             reduced = reduce(k_numerator,k_denominator)
-            print("REDU",reduced)
             return reduced
 
         if type(numerator) == int and type(denominator) == int:
@@ -74,13 +73,12 @@ class Fraction():
                 a=helpful
             self.numerator = int(self.numerator/abs(helpful))
             self.denominator = int(self.denominator/abs(helpful))
-            print("koniec",helpful)
 
-
-        print(self.numerator, self.denominator, "pppppppp")
 
 ################# 4 #################
 
+        if denominator == 0:
+            raise ZeroDivisionError
         #if type(numerator)!=int:
          #   raise Exception("Numerator is not an integer number")
             
@@ -116,7 +114,6 @@ class Fraction():
         if self.denominator == 1:
             return f"{self.numerator}"
         else:   
-            print ("AAAA", self.numerator)
             return f"{self.numerator}/{self.denominator}"
 
 ################# 3 #################
@@ -218,24 +215,14 @@ class Fraction():
         k_denominator = 10**quantity_after_decimal
         help_fraction = Fraction(k_numerator,k_denominator)
         help_fraction.reduce()
+
         total_numerator = help_fraction.numerator * self.denominator + self.numerator * help_fraction.denominator
         total_denominator = help_fraction.denominator * self.denominator
         final_fraction = Fraction(total_numerator, total_denominator)
         return final_fraction
 
 
+f1 = Fraction(-5,-2)
+print(f1)
 
 
-
-        
-            
-        
-
-
-    
-f1 = Fraction(-4,-8)
-f2 = Fraction(1,10)
-#print(f1.get_num())
-f3 = Fraction(0.3,0.7)
-#print(f3.mixed())
-print(f3.less_than(f1))
