@@ -74,16 +74,15 @@ class Fraction:
 
     def __str__(self):
         for i in range(1, 10):
-            while self.num % i != 0 and self.den % i != 0:
+            if self.num % i == 0 and self.den % i == 0:
                 self.num = self.num / i
                 self.den = self.den / i
-            i += 1
         return f"{self.num}/{self.den}"
 
 
 
 f1 = Fraction(-1, 3)
-f2 = Fraction(1, 6)
+f2 = Fraction(-1, 6)
 #print(f1.printing())
 #print((Fraction(1, 3) + Fraction(1, 2)))
 #print((Fraction(1, 3) / Fraction(1, 2)))
@@ -91,3 +90,5 @@ f2 = Fraction(1, 6)
 #print(f1.equal(f2))
 #print(f1.is_integer())
 print(Fraction(4, 8).__str__())
+f3=f1+f2
+print(f3)
