@@ -307,7 +307,3 @@ class Fraction:
         total_denominator = help_fraction.denominator * self.denominator
         final_fraction = Fraction(total_numerator, total_denominator)
         return final_fraction
-
-
-f1 = Fraction(11, 2)
-print(f1.split())
