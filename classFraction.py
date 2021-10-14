@@ -41,10 +41,10 @@ class Fraction:
             :return: Reduced fraction
             """
             integer = int(math.modf(k)[1])
-            string = str(k)
-            decimal_index = string.index(".")
-            quantity_after_decimal = len(string)-(decimal_index+1)
-            decimal_part = int(help[decimal_index+1:])
+            string_k = str(k)
+            decimal_index = string_k.index(".")
+            quantity_after_decimal = len(string_k)-(decimal_index+1)
+            decimal_part = int(string_k[decimal_index+1:])
             k_numerator = integer * 10**quantity_after_decimal + decimal_part
             k_denominator = 10**quantity_after_decimal
             reduced = reduce_init(k_numerator, k_denominator)
@@ -309,11 +309,5 @@ class Fraction:
         return final_fraction
 
 
-f1 = Fraction(10, -34)
-f2 = Fraction(5, -18)
-f3 = f1+f2
-print(f2.mixed())
-print(f3.plus_float(0.5))
-print(f1.get_den())
-
-
+f1 = Fraction(11, 2)
+print(f1.split())
