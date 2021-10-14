@@ -242,7 +242,7 @@ class Fraction:
 
     def split(self):
         """
-        The method extracts fraction, integral part and modulo from our fraction
+        The method extracts fraction, integral part and modulo of our fraction
         :return: List of fraction, integral part and modulo
         """
         number = self.numerator/self.denominator
