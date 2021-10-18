@@ -277,7 +277,7 @@ class Fraction:
             new_numerator = (abs(self.numerator)+extended)
             new_denominator = abs(self.denominator)
         else:
-            new_numerator = (abs(self.numerator)+extended)
+            new_numerator = (-abs(self.numerator)+extended)
             new_denominator = abs(self.denominator) 
         new_fraction = Fraction(new_numerator, new_denominator)
         return new_fraction
