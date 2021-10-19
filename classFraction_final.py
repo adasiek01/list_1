@@ -88,32 +88,6 @@ class Fraction:
            elif type(denominator)!=int:
                raise Exception("Denominator is not an integer number")"""
 
-    # def plus_float(self, k: float):
-    #     """
-    #     The method adds float to the fraction
-    #     :param k: Float
-    #     :return: Sum
-    #     """
-    #     integral = int(math.modf(k)[1])
-    #     string = str(k)
-    #     decimal_index = string.index(".")
-    #     quantity_after_decimal = len(string)-(decimal_index+1)
-        
-    #     if int(math.modf(k)[0]) < 0 or int(math.modf(k)[1]) <0:
-    #         decimal_part = -int(string[decimal_index+1:])
-    #     else:
-    #         decimal_part = int(string[decimal_index+1:])
-
-    #     k_numerator = integral * 10**quantity_after_decimal + decimal_part
-    #     k_denominator = 10**quantity_after_decimal
-            
-    #     help_fraction = Fraction(k_numerator, k_denominator)
-
-    #     total_numerator = help_fraction.numerator * self.denominator + self.numerator * help_fraction.denominator
-    #     total_denominator = help_fraction.denominator * self.denominator
-    #     final_fraction = Fraction(total_numerator, total_denominator)
-    #     return final_fraction
-
 
 
     def __add__(self, other):
@@ -288,4 +262,5 @@ class Fraction:
 a = Fraction(5,-2)
 b = Fraction(-1,4)
 
-print(b-1.0)
+if __name__ == "__main__":
+    print(b-1.0)
