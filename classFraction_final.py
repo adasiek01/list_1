@@ -134,9 +134,18 @@ class Fraction:
         :param other: Second fraction
         :return: Product
         """
-        new_numerator = self.numerator * other.numerator
-        new_denominator = self.denominator * other.denominator 
-        return Fraction(new_numerator, new_denominator)
+
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.numerator * float_numerator
+            new_denominator = self.denominator * float_denominator 
+            return Fraction(new_numerator, new_denominator)
+        else:
+            new_numerator = self.numerator * other.numerator
+            new_denominator = self.denominator * other.denominator 
+            return Fraction(new_numerator, new_denominator)
 
     def __truediv__(self, other):
         """
@@ -144,9 +153,18 @@ class Fraction:
         :param other: Second fraction
         :return: Quotient
         """
-        new_numerator = self.numerator * other.denominator
-        new_denominator = self.denominator * other.numerator 
-        return Fraction(new_numerator, new_denominator)
+
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.numerator * float_denominator
+            new_denominator = self.denominator * float_numerator 
+            return Fraction(new_numerator, new_denominator)
+        else: 
+            new_numerator = self.numerator * other.denominator
+            new_denominator = self.denominator * other.numerator 
+            return Fraction(new_numerator, new_denominator)
 
     def __str__(self):
         """
@@ -178,10 +196,21 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator < other.numerator/other.denominator:
-            return True
-        else:
-            return False
+
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator<float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator < other.numerator/other.denominator:
+                return True
+            else:
+                return False
 
     def __gt__(self, other):
         """
@@ -189,10 +218,20 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator > other.numerator/other.denominator:
-            return True
-        else:
-            return False
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator>float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator > other.numerator/other.denominator:
+                return True
+            else:
+                return False
 
     def __ne__(self, other):
         """
@@ -200,10 +239,20 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator != other.numerator/other.denominator:
-            return True
-        else:
-            return False
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator!=float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator != other.numerator/other.denominator:
+                return True
+            else:
+                return False
 
     def __eq__(self, other):
         """
@@ -211,10 +260,21 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator == other.numerator/other.denominator:
-            return True
-        else:
-            return False
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator==float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator == other.numerator/other.denominator:
+                return True
+            else:
+                return False
+
 
     def __le__(self, other):
         """
@@ -222,10 +282,20 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator <= other.numerator/other.denominator:
-            return True
-        else:
-            return False
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator<=float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator <= other.numerator/other.denominator:
+                return True
+            else:
+                return False
 
     def __ge__(self, other):
         """
@@ -233,10 +303,20 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if self.numerator/self.denominator >= other.numerator/other.denominator:
-            return True
-        else:
-            return False
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            if self.numerator/self.denominator>=float_numerator/float_denominator:
+                return True
+            else:
+                return False
+
+        else: 
+            if self.numerator/self.denominator >= other.numerator/other.denominator:
+                return True
+            else:
+                return False
 
     def mixed(self):
         """
@@ -260,7 +340,9 @@ class Fraction:
 
     
 a = Fraction(5,-2)
-b = Fraction(-1,4)
+b = Fraction(-2,-4)
 
 if __name__ == "__main__":
-    print(b-1.0)
+    #print(b-1.0)
+    print(a>b)
+    
