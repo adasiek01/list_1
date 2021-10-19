@@ -89,7 +89,20 @@ class Fraction:
                raise Exception("Denominator is not an integer number")"""
 
 
+    def __radd__(self,other):
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.numerator * float_denominator + self.denominator * float_numerator
+            new_denominator = self.denominator * float_denominator 
+            return Fraction(new_numerator, new_denominator)
 
+        else:
+            new_numerator = self.numerator * other.denominator + self.denominator * other.numerator
+            new_denominator = self.denominator * other.denominator 
+            return Fraction(new_numerator, new_denominator)
+            
     def __add__(self, other):
         """
         The method adds two fractions
@@ -108,6 +121,7 @@ class Fraction:
             new_numerator = self.numerator * other.denominator + self.denominator * other.numerator
             new_denominator = self.denominator * other.denominator 
             return Fraction(new_numerator, new_denominator)
+
 
     def __sub__(self, other):
         """
@@ -128,6 +142,21 @@ class Fraction:
             new_denominator = self.denominator * other.denominator 
             return Fraction(new_numerator, new_denominator)
 
+    def __rsub__(self,other):
+        print(self,other)
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.denominator * float_numerator -self.numerator * float_denominator 
+            new_denominator = self.denominator * float_denominator 
+            return Fraction(new_numerator, new_denominator)
+
+        else:
+            new_numerator = self.denominator * other.numerator - self.numerator * other.denominator
+            new_denominator = self.denominator * other.denominator 
+            return Fraction(new_numerator, new_denominator)
+
     def __mul__(self, other):
         """
         The method multiplies two fractions
@@ -135,6 +164,19 @@ class Fraction:
         :return: Product
         """
 
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.numerator * float_numerator
+            new_denominator = self.denominator * float_denominator 
+            return Fraction(new_numerator, new_denominator)
+        else:
+            new_numerator = self.numerator * other.numerator
+            new_denominator = self.denominator * other.denominator 
+            return Fraction(new_numerator, new_denominator)
+
+    def __rmul__(self, other):
         if type(other)==float:
             fr = transform(other)
             float_numerator = fr[0]
@@ -164,6 +206,20 @@ class Fraction:
         else: 
             new_numerator = self.numerator * other.denominator
             new_denominator = self.denominator * other.numerator 
+            return Fraction(new_numerator, new_denominator)
+
+    def __rtruediv__(self, other):
+
+        if type(other)==float:
+            fr = transform(other)
+            float_numerator = fr[0]
+            float_denominator = fr[1]
+            new_numerator = self.denominator * float_numerator 
+            new_denominator = self.numerator * float_denominator 
+            return Fraction(new_numerator, new_denominator)
+        else: 
+            new_numerator = self.denominator * other.numerator
+            new_denominator = self.numerator * other.denominator 
             return Fraction(new_numerator, new_denominator)
 
     def __str__(self):
@@ -344,5 +400,5 @@ b = Fraction(-2,-4)
 
 if __name__ == "__main__":
     #print(b-1.0)
-    print(a>b)
+    print(a<b)
     
