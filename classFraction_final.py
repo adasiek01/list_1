@@ -1,5 +1,6 @@
 import math
 
+
 def reduce(n, d):
     """
     The method reduces the fraction
@@ -24,6 +25,7 @@ def reduce(n, d):
             n = int(-abs(n/helpful))
             d = int(abs(d/helpful))
     return [n, d]
+
 
 def transform(k):
     """
@@ -54,7 +56,7 @@ class Fraction:
         """
         
         if type(numerator) == int and type(denominator) == int:
-            reduced = reduce(numerator,denominator)
+            reduced = reduce(numerator, denominator)
             self.numerator = reduced[0]
             self.denominator = reduced[1]
         elif type(numerator) == float and type(denominator) == int:
@@ -71,13 +73,12 @@ class Fraction:
             self.numerator = fraction_1[0]*fraction_2[1]
             self.denominator = fraction_1[1]*fraction_2[0]
 
-        if self.numerator*self.denominator<0:
+        if self.numerator*self.denominator < 0:
             self.denominator = abs(self.denominator)
             self.numerator = -abs(self.numerator)
         else:
             self.denominator = abs(self.denominator)
             self.numerator = abs(self.numerator)
-
 
         if denominator == 0:
             raise ZeroDivisionError("Don't divide by zero!")
@@ -88,9 +89,8 @@ class Fraction:
            elif type(denominator)!=int:
                raise Exception("Denominator is not an integer number")"""
 
-
-    def __radd__(self,other):
-        if type(other)==float:
+    def __radd__(self, other):
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -109,7 +109,7 @@ class Fraction:
         :param other: Second fraction
         :return: Sum
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -122,14 +122,13 @@ class Fraction:
             new_denominator = self.denominator * other.denominator 
             return Fraction(new_numerator, new_denominator)
 
-
     def __sub__(self, other):
         """
         The method subtracts two fractions
         :param other: Second fraction
         :return: Difference
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -142,13 +141,12 @@ class Fraction:
             new_denominator = self.denominator * other.denominator 
             return Fraction(new_numerator, new_denominator)
 
-    def __rsub__(self,other):
-        print(self,other)
-        if type(other)==float:
+    def __rsub__(self, other):
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
-            new_numerator = self.denominator * float_numerator -self.numerator * float_denominator 
+            new_numerator = self.denominator * float_numerator - self.numerator * float_denominator
             new_denominator = self.denominator * float_denominator 
             return Fraction(new_numerator, new_denominator)
 
@@ -164,7 +162,7 @@ class Fraction:
         :return: Product
         """
 
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -177,7 +175,7 @@ class Fraction:
             return Fraction(new_numerator, new_denominator)
 
     def __rmul__(self, other):
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -196,7 +194,7 @@ class Fraction:
         :return: Quotient
         """
 
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -210,7 +208,7 @@ class Fraction:
 
     def __rtruediv__(self, other):
 
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -253,7 +251,7 @@ class Fraction:
         :return: True or False
         """
 
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -274,7 +272,7 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
@@ -295,11 +293,11 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
-            if self.numerator/self.denominator!=float_numerator/float_denominator:
+            if self.numerator/self.denominator != float_numerator/float_denominator:
                 return True
             else:
                 return False
@@ -316,11 +314,11 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
-            if self.numerator/self.denominator==float_numerator/float_denominator:
+            if self.numerator/self.denominator == float_numerator/float_denominator:
                 return True
             else:
                 return False
@@ -331,18 +329,17 @@ class Fraction:
             else:
                 return False
 
-
     def __le__(self, other):
         """
         The method checks if the first fraction is smaller or equal to the second
         :param other: Second fraction
         :return: True or False
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
-            if self.numerator/self.denominator<=float_numerator/float_denominator:
+            if self.numerator/self.denominator <= float_numerator/float_denominator:
                 return True
             else:
                 return False
@@ -359,11 +356,11 @@ class Fraction:
         :param other: Second fraction
         :return: True or False
         """
-        if type(other)==float:
+        if type(other) == float:
             fr = transform(other)
             float_numerator = fr[0]
             float_denominator = fr[1]
-            if self.numerator/self.denominator>=float_numerator/float_denominator:
+            if self.numerator/self.denominator >= float_numerator/float_denominator:
                 return True
             else:
                 return False
@@ -392,13 +389,3 @@ class Fraction:
                 return f"{abs(self.numerator)}/{abs(self.denominator)}"
             else:
                 return f"{-abs(self.numerator)}/{abs(self.denominator)}"
-    
-
-    
-a = Fraction(5,-2)
-b = Fraction(-2,-4)
-
-if __name__ == "__main__":
-    #print(b-1.0)
-    print(a<b)
-    
